@@ -1,5 +1,6 @@
 package com.ecommerce.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Category extends BaseEntity {
   @Column(name = "category_name")
   private String categoryName;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
   private Set<Product> products;
 }
