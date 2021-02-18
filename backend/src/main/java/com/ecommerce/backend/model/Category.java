@@ -11,9 +11,8 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class Category extends BaseEntity {
 
-  private Long id;
   private String categoryName;
   private Set<Product> products;
 }
