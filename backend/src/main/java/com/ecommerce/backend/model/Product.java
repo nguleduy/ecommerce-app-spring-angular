@@ -38,7 +38,7 @@ public class Product extends BaseEntity {
   private String imageUrl;
 
   @Column(name = "active")
-  private Boolean active;
+  private Integer active;
 
   @Column(name = "units_in_stock")
   private Integer unitsInStock;
