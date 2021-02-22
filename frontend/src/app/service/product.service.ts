@@ -19,11 +19,13 @@ export class ProductService {
   }
 
   getProductsByCategory(id: number, page: number, size: number): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`http://localhost:8080/api/products/by-category?id=${id}&page${page}&size=${size}`).pipe(map(response => response));
+    return this.httpClient.get<Product[]>(`http://localhost:8080/api/products/by-category?id=${id}&page=${page}&size=${size}`)
+      .pipe(map(response => response));
   }
 
   getProductsByKeyword(keyword: string, page: number, size: number): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`http://localhost:8080/api/products/by-keyword?keyword=${keyword}&page${page}&size=${size}`).pipe(map(response => response));
+    return this.httpClient.get<Product[]>(`http://localhost:8080/api/products/by-keyword?keyword=${keyword}&page=${page}&size=${size}`)
+      .pipe(map(response => response));
   }
 
   getProductById(id: number): Observable<Product> {
@@ -39,6 +41,7 @@ export class ProductService {
   }
 
   countProductsByKeyword(keyword: string): Observable<number> {
-    return this.httpClient.get<number>(`http://localhost:8080/api/count-products-by-keyword?keyword=${keyword}`).pipe(map(response => response));
+    return this.httpClient.get<number>(`http://localhost:8080/api/count-products-by-keyword?keyword=${keyword}`)
+      .pipe(map(response => response));
   }
 }

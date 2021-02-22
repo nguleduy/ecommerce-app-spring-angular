@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute} from '@angular/router';
@@ -14,12 +14,13 @@ export class ProductsComponent implements OnInit {
   idValue: number;
   keywordValue: string;
 
-  page: number = 0;
-  size: number = 10;
-  numElement: number = 0;
+  page = 0;
+  size = 10;
+  numElement = 0;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -29,13 +30,13 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  initProducts() {
-    let id = this.route.snapshot.paramMap.get("id");
-    let keyword = this.route.snapshot.paramMap.get("keyword");
+  initProducts(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    const keyword = this.route.snapshot.paramMap.get('keyword');
     if (id) {
       this.idValue = +id;
       this.listProductsByCategory(this.idValue);
-    } else if (keyword){
+    } else if (keyword) {
       this.keywordValue = keyword;
       this.listProductsByKeyword(this.keywordValue);
     } else {
@@ -49,7 +50,7 @@ export class ProductsComponent implements OnInit {
         this.numElement = data;
       }
     );
-    this.productService.getProducts(this.page - 1, this.size).subscribe(
+    this.productService.getProducts(this.page > 0 ? this.page - 1 : 0, this.size).subscribe(
       data => {
         this.products = data;
       }
@@ -60,11 +61,11 @@ export class ProductsComponent implements OnInit {
     this.productService.countProductsByCategory(id).subscribe(
       data => {
         this.numElement = data;
-        this.productService.getProductsByCategory(id, this.page - 1, this.size).subscribe(
-          data => {
-            this.products = data;
-          }
-        );
+      }
+    );
+    this.productService.getProductsByCategory(id, this.page > 0 ? this.page - 1 : 0, this.size).subscribe(
+      data => {
+        this.products = data;
       }
     );
   }
@@ -75,7 +76,7 @@ export class ProductsComponent implements OnInit {
         this.numElement = data;
       }
     );
-    this.productService.getProductsByKeyword(keyword.trim(), this.page - 1, this.size).subscribe(
+    this.productService.getProductsByKeyword(keyword.trim(), this.page > 0 ? this.page - 1 : 0, this.size).subscribe(
       data => {
         this.products = data;
       }
@@ -83,7 +84,7 @@ export class ProductsComponent implements OnInit {
   }
 
   done(): void {
-    this.listProducts();
+    this.initProducts();
   }
 
 }
