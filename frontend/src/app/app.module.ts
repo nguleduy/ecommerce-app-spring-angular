@@ -7,6 +7,7 @@ import {ProductsComponent} from './component/products/products.component';
 import {HttpClientModule} from '@angular/common/http';
 import { CategoryComponent } from './component/category/category.component';
 import { SearchComponent } from './component/search/search.component';
+import { ProductDetailsComponent } from './component/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SearchComponent } from './component/search/search.component';
     ProductsComponent,
     CategoryComponent,
     SearchComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
