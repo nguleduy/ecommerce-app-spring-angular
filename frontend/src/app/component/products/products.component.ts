@@ -87,4 +87,9 @@ export class ProductsComponent implements OnInit {
     this.initProducts();
   }
 
+  editPageSize(event: Event): void {
+    this.size = +(event.target as HTMLInputElement).value;
+    this.initProducts();
+  }
+
 }
