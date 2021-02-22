@@ -33,4 +33,9 @@ public class ProductController {
   public List<Product> getProductsByKeyword(@RequestParam String keyword) {
     return productService.getProductsByKeyword(keyword);
   }
+
+  @GetMapping("product")
+  public Product getProductById(@RequestParam Long id) {
+    return productService.getProductById(id);
+  }
 }

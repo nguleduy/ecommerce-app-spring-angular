@@ -11,7 +11,7 @@ export class Product {
   dateCreated: Date;
   lastUpdated: Date;
 
-  constructor(
+  public constructor(
     id: number,
     sku: string,
     name: string,
