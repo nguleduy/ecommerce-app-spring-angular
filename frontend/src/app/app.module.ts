@@ -5,9 +5,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ProductsComponent} from './component/products/products.component';
 import {HttpClientModule} from '@angular/common/http';
-import { CategoryComponent } from './component/category/category.component';
-import { SearchComponent } from './component/search/search.component';
-import { ProductDetailsComponent } from './component/product-details/product-details.component';
+import {CategoryComponent} from './component/category/category.component';
+import {SearchComponent} from './component/search/search.component';
+import {ProductDetailsComponent} from './component/product-details/product-details.component';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductDetailsComponent } from './component/product-details/product-det
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

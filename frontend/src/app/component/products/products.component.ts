@@ -14,6 +14,10 @@ export class ProductsComponent implements OnInit {
   idValue: number;
   keywordValue: string;
 
+  page: number = 0;
+  size: number = 10;
+  numElement: number = 0;
+
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
 
@@ -40,7 +44,12 @@ export class ProductsComponent implements OnInit {
   }
 
   listProducts(): void {
-    this.productService.getProducts().subscribe(
+    this.productService.countProducts().subscribe(
+      data => {
+        this.numElement = data;
+      }
+    );
+    this.productService.getProducts(this.page - 1, this.size).subscribe(
       data => {
         this.products = data;
       }
@@ -48,19 +57,33 @@ export class ProductsComponent implements OnInit {
   }
 
   listProductsByCategory(id: number): void {
-    this.productService.getProductsByCategory(id).subscribe(
+    this.productService.countProductsByCategory(id).subscribe(
+      data => {
+        this.numElement = data;
+        this.productService.getProductsByCategory(id, this.page - 1, this.size).subscribe(
+          data => {
+            this.products = data;
+          }
+        );
+      }
+    );
+  }
+
+  listProductsByKeyword(keyword: string): void {
+    this.productService.countProductsByKeyword(keyword).subscribe(
+      data => {
+        this.numElement = data;
+      }
+    );
+    this.productService.getProductsByKeyword(keyword.trim(), this.page - 1, this.size).subscribe(
       data => {
         this.products = data;
       }
     );
   }
 
-  listProductsByKeyword(keyword: string): void {
-    this.productService.getProductsByKeyword(keyword.trim()).subscribe(
-      data => {
-        this.products = data;
-      }
-    );
+  done(): void {
+    this.listProducts();
   }
 
 }
