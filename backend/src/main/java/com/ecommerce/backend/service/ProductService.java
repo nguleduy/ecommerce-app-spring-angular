@@ -24,4 +24,8 @@ public class ProductService {
   public List<Product> getProductsByCategoryId(Long id) {
     return productRepository.findByCategoryId(id);
   }
+
+  public List<Product> getProductsByKeyword(String keyword) {
+    return productRepository.findByNameContaining(keyword);
+  }
 }

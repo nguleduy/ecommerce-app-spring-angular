@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
   idValue: number;
+  keywordValue: string;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
@@ -25,10 +26,14 @@ export class ProductsComponent implements OnInit {
   }
 
   initProducts() {
-    let dataRoute = this.route.snapshot.paramMap.get("id");
-    if (dataRoute) {
-      this.idValue = +dataRoute;
+    let id = this.route.snapshot.paramMap.get("id");
+    let keyword = this.route.snapshot.paramMap.get("keyword");
+    if (id) {
+      this.idValue = +id;
       this.listProductsByCategory(this.idValue);
+    } else if (keyword){
+      this.keywordValue = keyword;
+      this.listProductsByKeyword(this.keywordValue);
     } else {
       this.listProducts();
     }
@@ -44,6 +49,14 @@ export class ProductsComponent implements OnInit {
 
   listProductsByCategory(id: number): void {
     this.productService.getProductsByCategory(id).subscribe(
+      data => {
+        this.products = data;
+      }
+    );
+  }
+
+  listProductsByKeyword(keyword: string): void {
+    this.productService.getProductsByKeyword(keyword.trim()).subscribe(
       data => {
         this.products = data;
       }

@@ -21,4 +21,8 @@ export class ProductService {
   getProductsByCategory(id: number): Observable<Product[]> {
     return this.httpClient.get<Product[]>(`http://localhost:8080/api/products/by-category?id=${id}`).pipe(map(response => response));
   }
+
+  getProductsByKeyword(keyword: string): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`http://localhost:8080/api/products/by-keyword?keyword=${keyword}`).pipe(map(response => response));
+  }
 }
