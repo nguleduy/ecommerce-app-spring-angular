@@ -88,4 +88,21 @@ export class CheckoutComponent implements OnInit {
       }
     );
   }
+
+  updateMonths(): void {
+    const creditCardFormGroup = this.checkoutGroup.get('creditCard');
+    const currentYear = new Date().getFullYear();
+    const selectedYear = Number(creditCardFormGroup?.value.expirationYear);
+    let startMonth;
+    if (currentYear === selectedYear) {
+      startMonth = new Date().getMonth() + 1;
+    } else {
+      startMonth = 1;
+    }
+    this.dateService.getMonths(startMonth).subscribe(
+      data => {
+        this.creditCardMonths = data;
+      }
+    );
+  }
 }
