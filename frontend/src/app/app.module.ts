@@ -9,6 +9,7 @@ import {CategoryComponent} from './component/category/category.component';
 import {SearchComponent} from './component/search/search.component';
 import {ProductDetailsComponent} from './component/product-details/product-details.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { CartStatusComponent } from './component/cart-status/cart-status.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
     CategoryComponent,
     SearchComponent,
     ProductDetailsComponent,
+    CartStatusComponent,
   ],
   imports: [
     BrowserModule,
