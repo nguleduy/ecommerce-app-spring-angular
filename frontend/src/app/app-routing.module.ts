@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ProductsComponent} from './component/products/products.component';
 import {ProductDetailsComponent} from './component/product-details/product-details.component';
+import {CartDetailsComponent} from './component/cart-details/cart-details.component';
 
 // http://localhost:4200
 const routes: Routes = [
@@ -11,6 +12,8 @@ const routes: Routes = [
   {path: 'search/:keyword', component: ProductsComponent},
   // http://localhost:4200/product/id
   {path: 'product/:id', component: ProductDetailsComponent},
+  // http://localhost:4200/cart-details
+  {path: 'cart-details', component: CartDetailsComponent},
   // http://localhost:4200/products
   {path: 'products', component: ProductsComponent},
   {path: '', component: ProductsComponent},
