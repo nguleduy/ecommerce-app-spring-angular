@@ -20,7 +20,7 @@ export class CartService {
     if (this.cartItems.length > 0) {
       existCartItem = this.cartItems.find(item => item.id === cartItem.id);
     }
-    existInCart = (existCartItem != undefined);
+    existInCart = (existCartItem !== undefined);
     if (existInCart) {
       existCartItem.quantity++;
     } else {
@@ -29,10 +29,10 @@ export class CartService {
     this.computeCartTotals();
   }
 
-  private computeCartTotals(): void {
+  public computeCartTotals(): void {
     let totalQuantityValue = 0;
     let totalPriceValue = 0;
-    for (let item of this.cartItems) {
+    for (const item of this.cartItems) {
       totalQuantityValue += item.quantity;
       totalPriceValue += item.quantity * item.unitPrice;
     }

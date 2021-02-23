@@ -22,13 +22,13 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       () => {
-        let id = this.route.snapshot.paramMap.get("id");
+        const id = this.route.snapshot.paramMap.get('id');
         this.getProductById(+id);
       }
     );
   }
 
-  getProductById(id: number) {
+  getProductById(id: number): void {
     this.productService.getProductById(id).subscribe(
       data => {
         this.product = data;
@@ -36,7 +36,7 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product): void {
     const tmpProduct = new CartItem(product);
     this.cartService.addToCart(tmpProduct);
   }

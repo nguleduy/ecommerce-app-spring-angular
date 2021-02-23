@@ -3,7 +3,7 @@ import {Product} from '../../model/product';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {CartService} from '../../service/cart.service';
-import {CartItem} from "../../model/cart-item";
+import {CartItem} from '../../model/cart-item';
 
 @Component({
   selector: 'app-products',
@@ -95,7 +95,7 @@ export class ProductsComponent implements OnInit {
     this.initProducts();
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product): void {
     const tmpProduct = new CartItem(product);
     this.cartService.addToCart(tmpProduct);
   }
