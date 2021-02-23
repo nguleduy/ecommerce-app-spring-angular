@@ -43,6 +43,8 @@
 
               </div>
 
+              <div class="col"><button (click)="removeAllItems(item)" class="btn btn-primary btn-sm">Remove</button></div>
+
               <p class="mt-2">Subtotal: {{(item.quantity * item.unitPrice) | currency:'USD'}}</p>
             </td>
           </tr>

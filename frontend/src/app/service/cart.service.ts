@@ -49,10 +49,11 @@ export class CartService {
     }
   }
 
-  private remove(item: CartItem) {
+  public remove(item: CartItem) {
     const index = this.cartItems.findIndex(i => i.id === item.id);
     if (index > -1) {
       this.cartItems.splice(index, 1);
+      this.computeCartTotals();
     }
   }
 }

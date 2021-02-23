@@ -42,4 +42,8 @@ export class CartDetailsComponent implements OnInit {
   removeItem(item: CartItem) {
     this.cartService.removeItem(item);
   }
+
+  removeAllItems(item: CartItem) {
+    this.cartService.remove(item);
+  }
 }
