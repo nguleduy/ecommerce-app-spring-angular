@@ -1,7 +1,9 @@
 package com.ecommerce.backend.configuration;
 
 import com.ecommerce.backend.model.Category;
+import com.ecommerce.backend.model.Country;
 import com.ecommerce.backend.model.Product;
+import com.ecommerce.backend.model.State;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -15,6 +17,8 @@ public class ConfigureRepository implements RepositoryRestConfigurer {
     HttpMethod[] unsupportedMethod = {HttpMethod.GET, HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT};
     disableHttpMethod(Product.class, config, unsupportedMethod);
     disableHttpMethod(Category.class, config, unsupportedMethod);
+    disableHttpMethod(Country.class, config, unsupportedMethod);
+    disableHttpMethod(State.class, config, unsupportedMethod);
   }
 
   private void disableHttpMethod(Class clazz, RepositoryRestConfiguration config, HttpMethod[] unsupportedMethod) {
