@@ -9,9 +9,10 @@ import {CategoryComponent} from './component/category/category.component';
 import {SearchComponent} from './component/search/search.component';
 import {ProductDetailsComponent} from './component/product-details/product-details.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
-import { CartStatusComponent } from './component/cart-status/cart-status.component';
-import { CartDetailsComponent } from './component/cart-details/cart-details.component';
-import { CheckoutComponent } from './component/checkout/checkout.component';
+import {CartStatusComponent} from './component/cart-status/cart-status.component';
+import {CartDetailsComponent} from './component/cart-details/cart-details.component';
+import {CheckoutComponent} from './component/checkout/checkout.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,11 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
