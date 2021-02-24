@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DateService} from '../../service/date.service';
 import {PlaceService} from '../../service/place.service';
 
@@ -34,9 +34,9 @@ export class CheckoutComponent implements OnInit {
   initForm(): void {
     this.checkoutGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: [''],
-        lastName: [''],
-        email: ['']
+        firstName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+        lastName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+        email: new FormControl('',[Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]),
       }),
       shippingAddress: this.formBuilder.group({
         country: [''],
@@ -63,11 +63,27 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  get fName() {
+    return this.checkoutGroup.get('customer.firstName');
+  }
+
+  get lName() {
+    return this.checkoutGroup.get('customer.lastName');
+  }
+
+  get email() {
+    return this.checkoutGroup.get('customer.email');
+  }
+
   onSubmit(): void {
-    console.log(this.checkoutGroup.get('customer')?.value);
-    console.log(this.checkoutGroup.get('shippingAddress')?.value);
-    console.log(this.checkoutGroup.get('billingAddress')?.value);
-    console.log(this.checkoutGroup.get('creditCard')?.value);
+    if (this.checkoutGroup.invalid) {
+      this.checkoutGroup.markAllAsTouched();
+    } else {
+      console.log(this.checkoutGroup.get('customer')?.value);
+      console.log(this.checkoutGroup.get('shippingAddress')?.value);
+      console.log(this.checkoutGroup.get('billingAddress')?.value);
+      console.log(this.checkoutGroup.get('creditCard')?.value);
+    }
   }
 
   copyShippingToBilling(event: Event) {
