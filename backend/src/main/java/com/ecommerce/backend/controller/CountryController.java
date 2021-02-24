@@ -1,7 +1,6 @@
 package com.ecommerce.backend.controller;
 
-import com.ecommerce.backend.model.Category;
-import com.ecommerce.backend.service.CategoryService;
+import com.ecommerce.backend.model.Country;
 import com.ecommerce.backend.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,8 +18,8 @@ public class CountryController {
   @Autowired
   private CountryService countryService;
 
-//  @GetMapping("categories")
-//  public List<Category> getCategories() {
-//    return categoryService.getCategories();
-//  }
+  @GetMapping("countries")
+  public List<Country> getCountries() {
+    return countryService.getCountries();
+  }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {DateService} from '../../service/date.service';
+import {PlaceService} from '../../service/place.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,17 +13,22 @@ export class CheckoutComponent implements OnInit {
   checkoutGroup: FormGroup;
   creditCardMonths = [];
   creditCardYears = [];
+  countries = [];
+  statesShipping = [];
+  statesBilling = [];
   totalQuantity = 0;
   totalPrice = 0;
 
   constructor(private formBuilder: FormBuilder,
-              private dateService: DateService) {
+              private dateService: DateService,
+              private placeService: PlaceService) {
   }
 
   ngOnInit(): void {
     this.initForm();
     this.getMonths();
     this.getYears();
+    this.getCountries();
   }
 
   initForm(): void {
@@ -102,6 +108,28 @@ export class CheckoutComponent implements OnInit {
     this.dateService.getMonths(startMonth).subscribe(
       data => {
         this.creditCardMonths = data;
+      }
+    );
+  }
+
+  getCountries(): void {
+    this.placeService.getCountries().subscribe(
+      data => {
+        this.countries = data;
+      }
+    );
+  }
+
+  getStates(key: string): void {
+    const formGroup = this.checkoutGroup.get(key);
+    const codeCountry = formGroup?.value.country.code;
+    this.placeService.getStates(codeCountry).subscribe(
+      data => {
+        if (key === 'billingAddress') {
+          this.statesBilling = data;
+        } else {
+          this.statesShipping = data;
+        }
       }
     );
   }
