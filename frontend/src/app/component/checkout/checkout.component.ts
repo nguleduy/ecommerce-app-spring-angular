@@ -73,8 +73,10 @@ export class CheckoutComponent implements OnInit {
   copyShippingToBilling(event: Event) {
     if ((<HTMLInputElement>event.target).checked) {
       this.checkoutGroup.controls.billingAddress.setValue(this.checkoutGroup.controls.shippingAddress.value);
+      this.statesBilling = this.statesShipping;
     } else {
       this.checkoutGroup.controls.billingAddress.reset();
+      this.statesBilling = [];
     }
   }
 
@@ -116,6 +118,8 @@ export class CheckoutComponent implements OnInit {
     this.placeService.getCountries().subscribe(
       data => {
         this.countries = data;
+        // this.checkoutGroup.get('shippingAddress')?.get('country')?.setValue(data[0]);
+        // this.checkoutGroup.get('billingAddress')?.get('country')?.setValue(data[0]);
       }
     );
   }
@@ -125,10 +129,10 @@ export class CheckoutComponent implements OnInit {
     const codeCountry = formGroup?.value.country.code;
     this.placeService.getStates(codeCountry).subscribe(
       data => {
-        if (key === 'billingAddress') {
-          this.statesBilling = data;
-        } else {
+        if (key === 'shippingAddress') {
           this.statesShipping = data;
+        } else {
+          this.statesBilling = data;
         }
       }
     );
